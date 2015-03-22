@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block page_title %}Organisations{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <ul>
+            {% for organisation in organisations %}
+                <li><a href="/organisations/{{ organisation.id }}">{{ organisation.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="/organisations/add/">Add organisation</a>
+        </div>
+    </div>
+{% endblock %}

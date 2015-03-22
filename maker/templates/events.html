@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block page_title %}Events{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <ul>
+            {% for event in events %}
+                <li><a href="/events/{{ event.id }}">{{ event.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="/events/add/">Add event</a>
+        </div>
+    </div>
+{% endblock %}

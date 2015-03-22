@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block page_title %}Add organisation{% endblock %}
+{% block content %}
+    <div class="row">
+        <form method="POST" action="/organisations/add/">
+            <div class="col-md-8">
+                <div class="form-group">
+                    {{ form.blank_node.label }} {{ form.blank_node(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.name.label }} {{ form.name(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.alternate_name.label }} {{ form.alternate_name(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.url.label }} {{ form.url(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.img_url.label }} {{ form.img_url(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.founding_date.label }}
+                    {{ form.founding_date(class_="form-control") }}
+                </div>
+                <div class="checkbox">
+                    <label>{{ form.founding_date_month }} Exact month?</label>
+                    <label>{{ form.founding_date_day }} Exact day? </label>
+                </div>
+                <div class="form-group">
+                    {{ form.dissolution_date.label }}
+                    {{ form.dissolution_date(class_="form-control") }}
+                </div>
+                <div class="checkbox">
+                    <label>{{ form.dissolution_date_month }} Exact month?</label>
+                    <label>{{ form.dissolution_date_day }} Exact day? </label>
+                </div>
+                <div class="form-group">
+                    {{ form.location_id.label }}
+                    {{ form.location_id(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.has_parts.label }}
+                    {{ form.has_parts(class_="form-control") }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <input class="btn btn-primary" type="submit" value="Add organisation">
+            </div>
+        </form>
+    </div>
+{% endblock %}

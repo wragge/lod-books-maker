@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block page_title %}{{ place.name }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <td>{{ place.name }}</td>
+                </tr>
+                <tr>
+                    <th>Place type</th>
+                    <td>{{ place.place_type }}</td>
+                </tr>
+                {% if place.alternate_name %}
+                <tr>
+                    <th>Alternate name</th>
+                    <td>{{ place.alternate_name }}</td>
+                </tr>
+                {% endif %}
+                {% if place.url %}
+                <tr>
+                    <th>URL</th>
+                    <td>{{ place.url }}</td>
+                </tr>
+                {% endif %}
+                {% if place.latitude %}
+                <tr>
+                    <th>Latitude</th>
+                    <td>{{ place.latitude }}</td>
+                </tr>
+                {% endif %}
+                {% if place.longitude %}
+                <tr>
+                    <th>Longitude</th>
+                    <td>{{ place.longitude }}</td>
+                </tr>
+                {% endif %}
+                {% if place.contained_in %}
+                <tr>
+                    <th>Within</th>
+                    <td>
+                        {% for container in place.contained_in %}
+                            <li><a href="/places/{{ container.id }}/">{{ container.name }}</a></li>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if place.containing %}
+                <tr>
+                    <th>Containing</th>
+                    <td>
+                        {% for part in place.containing %}
+                            <li><a href="/places/{{ part.id }}/">{{ part.name }}</a></li>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if place.same_as %}
+                <tr>
+                    <th>Same as</th>
+                    <td>
+                    {% for same_as in place.same_as %}
+                        <li><a href="{{ same_as.identifier }}">{{ same_as.identifier }}</a></li>
+                    {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+            </table>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="/places/edit/{{ place.id }}">Edit</a>
+            <a class="btn btn-primary" href="/places/sameas/{{ place.id }}">Add identifier</a>
+            <a class="btn btn-primary btn-danger" href="/places/delete/{{ place.id }}">Delete</a>
+        </div>
+    </div>
+{% endblock %}

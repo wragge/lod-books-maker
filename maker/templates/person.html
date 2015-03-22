@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% block page_title %}{{ person.name }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered">
+            <tr>
+                <th>Name</th>
+                <td>{{ person.name }}</td>
+            </tr>
+            {% if person.family_name %}
+            <tr>
+                <th>Family name</th>
+                <td>{{ person.family_name }}</td>
+            </tr>
+            {% endif %}
+            {% if person.given_name %}
+            <tr>
+                <th>Given name</th>
+                <td>{{ person.given_name }}</td>
+            </tr>
+            {% endif %}
+            {% if person.birth_date %}
+            <tr>
+                <th>Date of birth</th>
+                <td>{{ person.display_birth_date('pretty') }}</td>
+            </tr>
+            {% endif %}
+            {% if person.birth_place %}
+            <tr>
+                <th>Place of birth</th>
+                <td>{{ person.birth_place.name }}</td>
+            </tr>
+            {% endif %}
+            {% if person.death_date %}
+            <tr>
+                <th>Date of death</th>
+                <td>{{ person.display_death_date('pretty') }}</td>
+            </tr>
+            {% endif %}
+            {% if person.death_place %}
+            <tr>
+                <th>Place of death</th>
+                <td>{{ person.death_place.name }}</td>
+            </tr>
+            {% endif %}
+            {% if person.knows_all() %}
+            <tr>
+                <th>Knows</th>
+                <td>
+                {% for known in person.knows_all() %}
+                    <li><a href="/people/{{ known.id }}">{{ known.name }}</a></li>
+                {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+            {% if person.related_all() %}
+            <tr>
+                <th>Related to</th>
+                <td>
+                {% for related in person.related_all() %}
+                    <li><a href="/people/{{ related.id }}">{{ related.name }}</a></li>
+                {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+            {% if person.spouse_all() %}
+            <tr>
+                <th>Spouses</th>
+                <td>
+                {% for spouse in person.spouse_all() %}
+                    <li><a href="/people/{{ spouse.id }}">{{ spouse.name }}</a></li>
+                {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+            {% if person.parents %}
+            <tr>
+                <th>Parents</th>
+                <td>
+                {% for parent in person.parents %}
+                    <li><a href="/people/{{ parent.id }}">{{ parent.name }}</a></li>
+                {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+            {% if person.children %}
+            <tr>
+                <th>Children</th>
+                <td>
+                {% for child in person.children %}
+                    <li><a href="/people/{{ child.id }}">{{ child.name }}</a></li>
+                {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+            {% if person.sibling_all() %}
+            <tr>
+                <th>Siblings</th>
+                <td>
+                {% for sibling in person.sibling_all() %}
+                    <li><a href="/people/{{ sibling.id }}">{{ sibling.name }}</a></li>
+                {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+            {% if person.creations %}
+            <tr>
+                <th>Creator of</th>
+                <td>
+                    {% for created in person.creations %}
+                        <li><a href="/resources/{{ created.id }}/">{{ created.name }}</a></li>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+            {% if person.about %}
+            <tr>
+                <th>Major subject of</th>
+                <td>
+                    {% for resource in person.about %}
+                        <li><a href="/resources/{{ resource.id }}/">{{ resource.name }}</a></li>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+            {% if person.mentioned %}
+            <tr>
+                <th>Mentioned in</th>
+                <td>
+                    {% for resource in person.mentioned %}
+                        <li><a href="/resources/{{ resource.id }}/">{{ resource.name }}</a></li>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endif %}
+            {% if person.same_as %}
+            <tr>
+                <th>Same as</th>
+                {% for same_as in person.same_as %}
+                    <td><a href="{{ same_as.identifier }}">{{ same_as.identifier }}</a></td>
+                {% endfor %}
+            </tr>
+            {% endif %}
+            </table>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="/people/edit/{{ person.id }}">Edit</a>
+            <a class="btn btn-primary" href="/people/sameas/{{ person.id }}">Add identifier</a>
+            <a class="btn btn-primary btn-danger" href="/people/delete/{{ person.id }}">Delete</a>
+        </div>
+    </div>
+{% endblock %}

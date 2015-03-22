@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block page_title %}People{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <ul>
+            {% for person in people %}
+                <li><a href="/people/{{ person.id }}">{{ person.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="/people/add/">Add</a>
+        </div>
+    </div>
+{% endblock %}

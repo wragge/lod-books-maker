@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block page_title %}Resources{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <ul>
+            {% for resource in resources %}
+                <li><a href="/resources/{{ resource.id }}">{{ resource.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="/resources/add/">Add resource</a>
+        </div>
+    </div>
+{% endblock %}

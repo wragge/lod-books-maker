@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block page_title %}Load data{% endblock %}
+{% block content %}
+    <form method="POST" action="/jsonld/load">
+        <div class="form-group">
+            {{ form.jsonld.label }} {{ form.jsonld(class_="form-control") }}
+        </div>
+        <input type="submit" value="Load">
+    </form>
+{% endblock %}

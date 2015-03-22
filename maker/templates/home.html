@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block page_title %}People{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <ul>
+                <li>{{ totals[0] }} people</li>
+                <li>{{ totals[1] }} places</li>
+                <li>{{ totals[2] }} resources</li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <p><a class="btn btn-primary" href="/people/add/">Add person</a></p>
+            <p><a class="btn btn-primary" href="/places/add/">Add place</a></p>
+            <p><a class="btn btn-primary" href="/resources/add/">Add resource</a></p>
+        </div>
+    </div>
+{% endblock %}

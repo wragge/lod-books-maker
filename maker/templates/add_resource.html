@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block page_title %}Add resource{% endblock %}
+{% block content %}
+    <div class="row">
+        <form method="POST" action="/resources/add/" enctype="multipart/form-data">
+            <div class="col-md-8">
+                <div class="form-group">
+                    {{ form.blank_node.label }} {{ form.blank_node(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.name.label }} {{ form.name(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.resource_type.label }} {{ form.resource_type(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.url.label }} {{ form.url(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.img_url.label }} {{ form.img_url(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.publication_date.label }}
+                    {{ form.publication_date(class_="form-control") }}
+                </div>
+                <div class="checkbox">
+                    <label>{{ form.publication_date_month }} Exact month?</label>
+                    <label>{{ form.publication_date_day }} Exact day? </label>
+                </div>
+                <div class="form-group">
+                    {{ form.creation_date.label }}
+                    {{ form.creation_date(class_="form-control") }}
+                </div>
+                <div class="checkbox">
+                    <label>{{ form.creation_date_month }} Exact month?</label>
+                    <label>{{ form.creation_date_day }} Exact day? </label>
+                </div>
+                <div class="form-group">
+                    {{ form.start_date.label }}
+                    {{ form.start_date(class_="form-control") }}
+                </div>
+                <div class="checkbox">
+                    <label>{{ form.start_date_month }} Exact month?</label>
+                    <label>{{ form.start_date_day }} Exact day? </label>
+                </div>
+                <div class="form-group">
+                    {{ form.end_date.label }}
+                    {{ form.end_date(class_="form-control") }}
+                </div>
+                <div class="checkbox">
+                    <label>{{ form.end_date_month }} Exact month?</label>
+                    <label>{{ form.end_date_day }} Exact day? </label>
+                </div>
+                <div class="form-group">
+                    {{ form.thumbnail.label }} {{ form.thumbnail(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.position.label }} {{ form.position(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.page_start.label }} {{ form.page_start(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.page_end.label }} {{ form.page_end(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.pagination.label }} {{ form.pagination(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.part_of.label }} {{ form.part_of(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.creators.label }} {{ form.creators(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.publisher_id.label }} {{ form.publisher_id(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.provider_id.label }} {{ form.provider_id(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.about_people.label }} {{ form.about_people(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.mentions_people.label }} {{ form.mentions_people(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.about_organisations.label }} {{ form.about_organisations(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.mentions_organisations.label }} {{ form.mentions_organisations(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.about_events.label }} {{ form.about_events(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.mentions_events.label }} {{ form.mentions_events(class_="form-control") }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <input class="btn btn-primary" type="submit" value="Add resource">
+            </div>
+        </form>
+    </div>
+{% endblock %}

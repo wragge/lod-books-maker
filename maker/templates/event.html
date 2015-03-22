@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block page_title %}{{ event.name }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <td>{{ event.name }}</td>
+                </tr>
+                {% if event.alternate_name %}
+                <tr>
+                    <th>Alternate name</th>
+                    <td>{{ event.alternate_name }}</td>
+                </tr>
+                {% endif %}
+                {% if event.url %}
+                <tr>
+                    <th>URL</th>
+                    <td>{{ event.url }}</td>
+                </tr>
+                {% endif %}
+                {% if event.start_date %}
+                <tr>
+                    <th>Start date</th>
+                    <td>{{ event.display_start_date('pretty') }}</td>
+                </tr>
+                {% endif %}
+                {% if event.end_date %}
+                <tr>
+                    <th>End date</th>
+                    <td>{{ event.display_end_date('pretty') }}</td>
+                </tr>
+                {% endif %}
+                {% if event.super_event %}
+                <tr>
+                    <th>Part of</th>
+                    <td>
+                        {% for container in event.super_event %}
+                            <li><a href="/events/{{ container.id }}/">{{ container.name }}</a></li>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if event.containing %}
+                <tr>
+                    <th>Containing</th>
+                    <td>
+                        {% for part in event.containing %}
+                            <li><a href="/events/{{ part.id }}/">{{ part.name }}</a></li>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if event.same_as %}
+                <tr>
+                    <th>Same as</th>
+                    <td>
+                    {% for same_as in event.same_as %}
+                        <li><a href="{{ same_as.identifier }}">{{ same_as.identifier }}</a></li>
+                    {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+            </table>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="/events/edit/{{ event.id }}">Edit</a>
+            <a class="btn btn-primary" href="/events/sameas/{{ event.id }}">Add identifier</a>
+            <a class="btn btn-primary btn-danger" href="/events/delete/{{ event.id }}">Delete</a>
+        </div>
+    </div>
+{% endblock %}

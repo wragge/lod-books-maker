@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block page_title %}Add sameas{% endblock %}
+{% block content %}
+    <form method="POST" action="/resources/sameas/{{ resource.id }}/">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    {{ form.identifier.label }} {{ form.identifier(class_="form-control") }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <input class="btn btn-primary" type="submit" value="Add identifier">
+            </div>
+        </div>
+    </form>
+{% endblock %}

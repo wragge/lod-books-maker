@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block page_title %}Places{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <ul>
+            {% for place in places %}
+                <li><a href="/places/{{ place.id }}">{{ place.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="/places/add/">Add place</a>
+        </div>
+    </div>
+{% endblock %}

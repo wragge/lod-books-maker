@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block page_title %}Edit person{% endblock %}
+{% block content %}
+    <div class="row">
+        <form method="POST" action="/people/edit/{{ person.id }}/" enctype="multipart/form-data">
+            <div class="col-md-8">
+                <div class="form-group">
+                    {{ form.blank_node.label }} {{ form.blank_node(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.name.label }} {{ form.name(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.family_name.label }} {{ form.family_name(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.given_name.label }} {{ form.given_name(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.url.label }} {{ form.url(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.img_url.label }} {{ form.img_url(class_="form-control") }}
+                    Current: {{ person.img_url }}
+                </div>
+                <div class="form-group">
+                    {{ form.birth_date.label }}
+                    {{ form.birth_date(class_="form-control") }}
+                </div>
+                <div class="checkbox">
+                    <label>{{ form.birth_date_month }} Exact month?</label>
+                    <label>{{ form.birth_date_day }} Exact day? </label>
+                </div>
+                <div class="form-group">
+                    {{ form.birth_place_id.label }}
+                    {{ form.birth_place_id(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.death_date.label }}
+                    {{ form.death_date(class_="form-control") }}
+                </div>
+                <div class="checkbox">
+                    <label>{{ form.death_date_month }} Exact month?</label>
+                    <label>{{ form.death_date_day }} Exact day? </label>
+                </div>
+                <div class="form-group">
+                    {{ form.death_place_id.label }}
+                    {{ form.death_place_id(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.knows.label }}
+                    {{ form.knows(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.related_to.label }}
+                    {{ form.related_to(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.parents.label }}
+                    {{ form.parents(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.spouses.label }}
+                    {{ form.spouses(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.siblings.label }}
+                    {{ form.siblings(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.member_of.label }}
+                    {{ form.member_of(class_="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.employee_of.label }}
+                    {{ form.employee_of(class_="form-control") }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <input class="btn btn-primary" type="submit" value="Update person">
+            </div>
+        </form>
+    </div>
+{% endblock %}

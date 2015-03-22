@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block page_title %}{{ resource.name }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <td>{{ resource.name }}</td>
+                </tr>
+                {% if resource.creators %}
+                <tr>
+                    <th>Created by</th>
+                    <td>
+                        {% for person in resource.creators %}
+                            <li><a href="/people/{{ person.id }}/">{{ person.name }}</a></li>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if resource.publication_date %}
+                <tr>
+                    <th>Date of publication</th>
+                    <td>{{ resource.display_publication_date('pretty') }}</td>
+                </tr>
+                {% endif %}
+                {% if resource.creation_date %}
+                <tr>
+                    <th>Date of creation</th>
+                    <td>{{ resource.display_creation_date('pretty') }}</td>
+                </tr>
+                {% endif %}
+                {% if resource.start_date %}
+                <tr>
+                    <th>Start date</th>
+                    <td>{{ resource.display_start_date('pretty') }}</td>
+                </tr>
+                {% endif %}
+                {% if resource.end_date %}
+                <tr>
+                    <th>End date</th>
+                    <td>{{ resource.display_end_date('pretty') }}</td>
+                </tr>
+                {% endif %}
+                {% if resource.publishers %}
+                <tr>
+                    <th>Publisher</th>
+                    <td><a href="/organisations/{{ resource.publishers[0].id }}/">{{ resource.publishers[0].name }}</a></td>
+                </tr>
+                {% endif %}
+                {% if resource.providers %}
+                <tr>
+                    <th>Provider</th>
+                    <td><a href="/organisations/{{ resource.providers[0].id }}/">{{ resource.providers[0].name }}</a></td>
+                </tr>
+                {% endif %}
+                {% if resource.part_of %}
+                <tr>
+                    <th>Part of</th>
+                    <td><a href="/resources/{{ resource.part_of[0].id }}/">{{ resource.part_of[0].name }}</a></td>
+                </tr>
+                {% endif %}
+                {% if resource.about_people %}
+                <tr>
+                    <th>Has parts</th>
+                    <td>
+                        {% for part in resource.has_parts %}
+                            <li><a href="/resource/{{ part.id }}/">{{ part.name }}</a></li>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if resource.about_people %}
+                <tr>
+                    <th>About these people</th>
+                    <td>
+                        {% for person in resource.about_people %}
+                            <li><a href="/people/{{ person.id }}/">{{ person.name }}</a></li>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if resource.mentions_people %}
+                <tr>
+                    <th>Mentions these people</th>
+                    <td>
+                        {% for person in resource.mentions_people %}
+                            <li><a href="/people/{{ person.id }}/">{{ person.name }}</a></li>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if resource.about_organisations %}
+                <tr>
+                    <th>About these organisations</th>
+                    <td>
+                        {% for org in resource.about_organisations %}
+                            <li><a href="/organisations/{{ org.id }}/">{{ org.name }}</a></li>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if resource.mentions_organisations %}
+                <tr>
+                    <th>Mentions these organisations</th>
+                    <td>
+                        {% for org in resource.mentions_organisations %}
+                            <li><a href="/organisations/{{ org.id }}/">{{ org.name }}</a></li>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if resource.same_as %}
+                <tr>
+                    <th>Same as</th>
+                    <td>
+                    {% for same_as in resource.same_as %}
+                        <li><a href="{{ same_as.identifier }}">{{ same_as.identifier }}</a></li>
+                    {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+            </table>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="/resources/edit/{{ resource.id }}/">Edit</a>
+            <a class="btn btn-primary" href="/resources/sameas/{{ resource.id }}">Add identifier</a>
+            <a class="btn btn-primary btn-danger" href="/resources/delete/{{ resource.id }}/">Delete</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block page_title %}{{ organisation.name }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <td>{{ organisation.name }}</td>
+                </tr>
+                {% if organisation.alternate_name %}
+                <tr>
+                    <th>Alternate name</th>
+                    <td>{{ organisation.alternate_name }}</td>
+                </tr>
+                {% endif %}
+                {% if organisation.founding_date %}
+                <tr>
+                    <th>Founding date</th>
+                    <td>{{ organisation.display_founding_date('pretty') }}</td>
+                </tr>
+                {% endif %}
+                {% if organisation.dissolution_date %}
+                <tr>
+                    <th>Dissolution date</th>
+                    <td>{{ organisation.display_dissolution_date('pretty') }}</td>
+                </tr>
+                {% endif %}
+                {% if organisation.location %}
+                <tr>
+                    <th>Location</th>
+                    <td>{{ organisation.location.name }}</td>
+                </tr>
+                {% endif %}
+                {% if organisation.has_parts %}
+                <tr>
+                    <th>Sub organisations</th>
+                    <td>
+                    {% for org in organisation.has_parts %}
+                        <li><a href="/organisation/{{ org.id }}">{{ org.name }}</a></li>
+                    {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% if organisation.same_as %}
+                <tr>
+                    <th>Same as</th>
+                    <td>
+                    {% for same_as in organisation.same_as %}
+                        <li><a href="{{ same_as.identifier }}">{{ same_as.identifier }}</a></li>
+                    {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+            </table>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary" href="/organisations/edit/{{ organisation.id }}">Edit</a>
+            <a class="btn btn-primary" href="/organisations/sameas/{{ organisation.id }}">Add identifier</a>
+            <a class="btn btn-primary btn-danger" href="/organisations/delete/{{ organisation.id }}">Delete</a>
+        </div>
+    </div>
+{% endblock %}
