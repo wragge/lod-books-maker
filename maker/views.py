@@ -14,6 +14,7 @@ import json
 import datetime
 import os
 from sqlalchemy.exc import IntegrityError
+from config import BOOK_TITLE
 
 ROOT = Namespace('http://lodbookdev.herokuapp.com/')
 
@@ -1225,3 +1226,8 @@ def add_sameas_place(id):
         db.session.commit()
         return redirect('/places/{}/'.format(id))
     return render_template('add_sameas_place.html', place=place, form=form)
+
+
+@app.context_processor
+def inject_details():
+    return dict(book_title=BOOK_TITLE)
