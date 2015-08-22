@@ -349,6 +349,12 @@ def view_jsonld():
         for node in entity.attendees:
             n_id = create_id(node, 'people')
             graph.add((e_id, schema['attendee'], n_id))
+        for node in entity.about:
+            n_id = create_id(node, 'resources')
+            graph.add((e_id, schema['subjectOf'], n_id))
+        for node in entity.mentioned:
+            n_id = create_id(node, 'resources')
+            graph.add((e_id, schema['mentionedBy'], n_id))
         if entity.url:
             graph.add((e_id, schema['url'], Literal(entity.url)))
         if entity.img_url:
@@ -387,6 +393,12 @@ def view_jsonld():
             graph.add((e_id, schema['about'], n_id))
         for node in entity.mentions_organisations:
             n_id = create_id(node, 'organisations')
+            graph.add((e_id, schema['mentions'], n_id))
+        for node in entity.about_events:
+            n_id = create_id(node, 'events')
+            graph.add((e_id, schema['about'], n_id))
+        for node in entity.mentions_events:
+            n_id = create_id(node, 'events')
             graph.add((e_id, schema['mentions'], n_id))
         for node in entity.part_of:
             n_id = create_id(node, 'resources')
